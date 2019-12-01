@@ -4,7 +4,7 @@ from numba import njit
 import os
 
 # TODO: add argparser to input SUBMISSION_NAME directly in terminal
-SUBMISSION_NAME = "starteR_optimization"
+SUBMISSION_NAME = "genetic_algorithm_basics"
 
 data = pd.read_csv('./data/family_data.csv', index_col='family_id')
 prediction = pd.read_csv("./submissions/" + SUBMISSION_NAME + ".csv", index_col='family_id').assigned_day.values
