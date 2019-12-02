@@ -3,4 +3,5 @@ This is my work for the Kaggle competition named [Personalized Medicine: Redefin
 
 This competition ended in September 2017.
 
-Granted me the 132nd place out of 1386 competitors (top 10%) in the leaderboard.
+
+Granted me the **132nd place out of 1386 competitors (top 10%)** in the leaderboard.
