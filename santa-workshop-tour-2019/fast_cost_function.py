@@ -2,12 +2,17 @@ import numpy as np
 import pandas as pd
 from numba import njit
 import os
+import argparse
 
-# TODO: add argparser to input SUBMISSION_NAME directly in terminal
-SUBMISSION_NAME = "genetic_algorithm_basics"
+parser = argparse.ArgumentParser()
+parser.add_argument("submission", help="Submission filename to use, without filetype (.csv)", type=str)
+parser.add_argument("-r", "--rename", help="Rename the file to <LB_Score>_<filename>", action="store_true")
+args = parser.parse_args()
+submission_name = args.submission
+rename = args.rename
 
 data = pd.read_csv('./data/family_data.csv', index_col='family_id')
-prediction = pd.read_csv("./submissions/" + SUBMISSION_NAME + ".csv", index_col='family_id').assigned_day.values
+prediction = pd.read_csv("./submissions/" + submission_name + ".csv", index_col='family_id').assigned_day.values
 family_size = data.n_people.values
 
 penalties = np.asarray([
@@ -65,4 +70,7 @@ get_cost = lambda prediction: cost_function(prediction, family_size, cost_matrix
 
 LB_cost = int(get_cost(prediction)[0])
 
-os.rename(f"./submissions/{SUBMISSION_NAME}.csv", f"./submissions/{LB_cost}_{SUBMISSION_NAME}.csv")
+if rename:
+    os.rename(f"./submissions/{submission_name}.csv", f"./submissions/{LB_cost}_{submission_name}.csv")
+
+print(f"Fitness score: {LB_cost}")
