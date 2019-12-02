@@ -2,8 +2,14 @@ import numpy as np
 import pandas as pd
 np.random.seed(2019)
 import os
+import argparse
 
-submission_name = "79833_starteR_optimization"
+
+parser = argparse.ArgumentParser()
+parser.add_argument("submission", help="Submission filename to use, without filetype (.csv)", type=str)
+args = parser.parse_args()
+submission_name = args.submission
+
 
 def import_data(submission_name):
     data = pd.read_csv(r'C:\Users\pedro\Documents\kaggle\santa-workshop-tour-2019\data\family_data.csv')
